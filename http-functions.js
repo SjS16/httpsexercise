@@ -1,11 +1,11 @@
 var https = require('https');
 
-function getHTML (options, callback) {
+module.exports = function getHTML (options, callback) {
 
 // var options = requestOptions;
 // notice that https.get takes a callback with one parameter -
 // response, which is a Stream that represents the HTTP response
-https.get(requestOptions, function (response) {
+https.get(options, function (response) {
 
   // set encoding of received data to UTF-8
   response.setEncoding('utf8');
@@ -16,7 +16,7 @@ https.get(requestOptions, function (response) {
     for(var i = 0; i < data.length; i++); {
       dataChunks += data;
     // console.log('Data chunk buffering.');
-     }printHTML(dataChunks);
+     }console.log(dataChunks);
   });
 
   // the callback is invoked when all of the data has been received
@@ -27,14 +27,3 @@ https.get(requestOptions, function (response) {
 
 });
 }
-
-function printHTML (html) {
-  console.log(html);
-}
-
-var requestOptions = {
-  host: 'sytantris.github.io',
-  path: '/http-examples/step4.html'
-};
-
-console.log(getHTML(requestOptions, printHTML()))
