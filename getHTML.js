@@ -1,7 +1,7 @@
 var https = require('https');
 
 
-function getAndPrintHTML (options) {
+function getHTML (options, callback) {
 
 // var options = requestOptions;
 // notice that https.get takes a callback with one parameter -
@@ -17,7 +17,7 @@ https.get(requestOptions, function (response) {
     for(var i = 0; i < data.length; i++); {
       dataChunks += data;
     // console.log('Data chunk buffering.');
-     }console.log(dataChunks);
+     }printHTML(dataChunks);
   });
 
   // the callback is invoked when all of the data has been received
@@ -27,12 +27,15 @@ https.get(requestOptions, function (response) {
   });
 
 });
-
 }
+
+function printHTML (html) {
+  console.log(html);
+}
+
 var requestOptions = {
   host: 'sytantris.github.io',
-  path: '/http-examples/step3.html'
+  path: '/http-examples/step4.html'
 };
 
-//invoke and call function
-console.log(getAndPrintHTML (requestOptions));
+console.log(getHTML(requestOptions, printHTML()))
